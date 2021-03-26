@@ -1,76 +1,87 @@
-import React, { Component } from "react";
-import Container from "./Container";
-import Row from "./Row";
-import Col from "./Col";
-import Card from "./Card";
-import SearchForm from "./SearchForm";
-import FoodDetail from "./MovieDetail";
-import API from "../utils/API";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-class FoodContainer extends Component {
-  state = {
-    result: {},
-    search: ""
+
+function FoodContainer() {
+
+  const [query, setQuery] = useState([]);
+
+  const [recipeList, setRecipeList] = useState([])
+
+  const APP_ID = "171a1274";
+
+  const APP_KEY = "2f55324f23c054712335c6346d529523"
+
+  const url = `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}&health=dairy-free`
+
+  useEffect(()=> {
+    loadRecipes()
+  }, [])
+
+  
+
+
+  function loadRecipes(){
+
+    axios.get(url).then((res) => {
+      setRecipeList(res.data.hits[0])
+      console.log(res.data.hits[0])
+    })
+
+    
+
+
+
   };
+  
+  
 
-  // When this component mounts, search for Apple"
-  componentDidMount() {
-    this.searchFoods("Apple");
+
+  
+
+
+  
+    
+    
+
+    
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    
+    loadRecipes()
+
+
+
   }
 
-  searchFoods = query => {
-    API.search(query)
-      .then(res => this.setState({ result: res.data }))
-      .catch(err => console.log(err));
-  };
-
-  handleInputChange = event => {
-    const value = event.target.value;
-    const name = event.target.name;
-    this.setState({
-      [name]: value
-    });
-  };
-
-  // When the form is submitted, search the Edamam API for the value of `this.state.search`
-  handleFormSubmit = event => {
-    event.preventDefault();
-    this.searchFoods(this.state.search);
-  };
-
-  render() {
-    return (
-      <Container>
-        <Row>
-          <Col size="md-8">
-            <Card
-              heading={this.state.result.Food || "Search for a Food to Begin"}
-            >
-              {this.state.result.Food ? (
-                <FoodDetail
-                  food={this.state.result.Food}
-                  dairy={this.state.result.Dairy}
-                  vegetarian={this.state.result.Vegetarian}
-                  
-                />
-              ) : (
-                <h3>No Results to Display</h3>
-              )}
-            </Card>
-          </Col>
-          <Col size="md-4">
-            <Card heading="Search">
-              <SearchForm
-                value={this.state.search}
-                handleInputChange={this.handleInputChange}
-                handleFormSubmit={this.handleFormSubmit}
-              />
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-    );
+  const onChange = e => {
+    setQuery(e.target.value)
   }
+
+
+
+  return (
+    <div className="FoodContainer">
+      <h1>Food</h1>
+      <form className="search-form" onClick={onSubmit}>
+        <input type="text" placeholder="Search" onChange={onChange} value={query} />
+        <input type="submit" value="search" />
+      </form>
+      {recipeList.length ? (
+        <div>{recipeList}</div>
+
+      ): (null)}
+      
+    </div>
+  )
+
+
+
+
+
+
 }
+export default FoodContainer
 
-export default FoodContainer;
+
