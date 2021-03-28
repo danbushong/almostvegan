@@ -12,6 +12,8 @@ function FoodContainer() {
 
   const [didItSubmit, setWasItSubmitted] = useAtom(wasItSubmitted)
 
+  const [formObject, setFormObject] = useState([])
+
   
 
   
@@ -48,9 +50,11 @@ function FoodContainer() {
   const onSubmit = (e) => {
     e.preventDefault();
     
-    setWasItSubmitted(true)
-    
-    console.log(recipeReturned)
+    if (query.data){
+      wasSubmitted === true
+    } else{
+      wasSubmitted === false
+    }
 
 
 
