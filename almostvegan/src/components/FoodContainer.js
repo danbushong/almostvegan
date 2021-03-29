@@ -8,11 +8,12 @@ function FoodContainer() {
 
   const [query, setQuery] = useState([]);
 
-  const [recipeReturned, setRecipeList] = useState([])
+  const [recipeReturned, setRecipeList] = useState("nothing here")
 
-  const [didItSubmit, setWasItSubmitted] = useAtom(wasItSubmitted)
+  const [didItSubmit, setWasItSubmitted] = useState(false)
 
-  const [formObject, setFormObject] = useState([])
+
+  // const [formObject, setFormObject] = useState([])
 
   
 
@@ -25,10 +26,8 @@ function FoodContainer() {
 
   const url = `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}&health=dairy-free&health=egg-free`
 
-  useEffect(()=> {
-    loadRecipes()
-  }, [])
-
+  
+  
   
  
 
@@ -45,16 +44,14 @@ function FoodContainer() {
 
   };
 
-    
+  console.log(didItSubmit)
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setWasItSubmitted(true)
+    console.log(didItSubmit)
     
-    if (query.data){
-      wasSubmitted === true
-    } else{
-      wasSubmitted === false
-    }
+    
 
 
 
@@ -71,20 +68,18 @@ function FoodContainer() {
   return (
     <div className="FoodContainer">
       <h1>Food</h1>
-      <form className="search-form" onClick={onSubmit}>
+      <form className="search-form" >
         <input type="text" placeholder="Search" onChange={onChange} value={query} />
-        <input type="submit" value="search" />
+        <input type="submit" value="search" onClick={onSubmit}/>
       </form>
-      {wasItSubmitted !== false ? (
-        <div>what ya wanna eat?</div>
+      
+      <div>
+        <div>{recipeReturned}</div>
         
-        
-        
-      ) : (
-        
-        
-        <img src={recipeReturned.recipe.image}></img>
-      )}
+
+      </div>
+      
+      
       
     
 
