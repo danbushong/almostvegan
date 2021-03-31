@@ -19,7 +19,7 @@ function FoodContainer() {
 
   const APP_KEY = "2f55324f23c054712335c6346d529523"
 
-  const url = `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}&health=dairy-free&health=egg-free&health=vegetarian`
+  let url = `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}&health=dairy-free&health=egg-free&health=vegetarian`
 
 
 
@@ -54,8 +54,43 @@ function FoodContainer() {
 
   }
 
+  const bbOnSubmit = (e) => {
+    e.preventDefault();
+    //all vegetarian for bb
+    const url = `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}&health=vegetarian`
+
+    axios.get(url).then((res) => {
+      setRecipe(res.data.hits)
+
+    })
+  }
+
+  const dbOnSubmit = (e) => {
+    e.preventDefault();
+    //no egg or dairy for db
+    const url = `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}&health=dairy-free&health=egg-free`
+
+    axios.get(url).then((res) => {
+      setRecipe(res.data.hits)
+
+    })
+
+  }
+
   const onChange = e => {
     setQuery(e.target.value)
+  }
+
+  const allOnSubmit = (e) => {
+    e.preventDefault();
+    //search all
+    const url = `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`
+
+    axios.get(url).then((res) => {
+      setRecipe(res.data.hits)
+
+    })
+
   }
 
 
@@ -65,10 +100,20 @@ function FoodContainer() {
   return (
     <div className="App">
       <h1>Food for DB and BB! </h1>
-      <form className="search-form" >
-        <input type="text" placeholder="Search" onChange={onChange} value={query} />
-        <input type="submit" value="search" onClick={onSubmit} />
+      <h3>This app was created to help my wife and I figure out what foods we can eat. She is vegetarian, and I can not have dairy or eggs. I hope you find this app useful too!</h3>
+      <form className="search-form">
+      <input type="text" placeholder="Search" onChange={onChange} value={query} />
+      
+        <input type="submit" value="DB+BB" onClick={onSubmit} />
+        <input type="submit" value="All Veg" onClick={bbOnSubmit} />
+        <input type="submit" value="X Dairy+Egg" onClick={dbOnSubmit} />
+        <input type="submit" value="All" onClick={allOnSubmit} />
       </form>
+      <h4>Legend:</h4>
+        <p>DB+BB= Vegetarian, no dairy, no egg</p>
+        <p>All Veg= Vegetarian foods only</p>
+        <p>X Dairy+Egg= No foods with dairy or egg in them</p>
+        <p>All= No dietary restrictions</p>
       <div className="recipes">
 
         {recipes !== [] &&
