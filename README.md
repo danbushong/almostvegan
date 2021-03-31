@@ -11,7 +11,7 @@
   <br>
   npm start
   ## Usage
-  Find different recipe's if you are in the mood for a certain food. Recipe take in types of dietary restrictions and return content that is personalized to the user. 
+  Find different recipes if you are in the mood for a certain food. Recipe take in types of dietary restrictions and return content that is personalized to the user. 
   ## License
   ![Badge](https://img.shields.io/badge/license-MIT-green)<br>
   Copywrite (c) 2021 Dan Bushong
