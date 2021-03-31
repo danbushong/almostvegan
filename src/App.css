@@ -175,6 +175,8 @@ h3{
   font-size: 1.3rem;
 }
 
+
+
 @media only screen and (max-width: 1000px) {
 
   html {
@@ -196,4 +198,21 @@ h3{
   
   
   
+}
+@media only screen and (min-width: 650px){
+  html{
+    font-size: 80%;
+  }
+  .search-form {
+    width: 50rem;
+    height: 20rem;
+    
+  }
+  .search-form input[type="text"] {
+    position: absolute;
+    top: 30px;
+    padding: 0 0.5rem;
+    width: 60%;
+    color: #555;
+  }
 }
