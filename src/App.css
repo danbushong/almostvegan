@@ -47,11 +47,7 @@ h3{
 
 
 .search-form {
-<<<<<<< HEAD
   width: 60rem;
-=======
-  width: 30rem;
->>>>>>> 44dc0ce1a9eb841779cfa76a878cf8a60b552e02
   height: 10rem;
   display: flex;
   justify-content: center;
@@ -178,7 +174,6 @@ h3{
   color: #40b48e;
   font-size: 1.3rem;
 }
-<<<<<<< HEAD
 
 @media only screen and (max-width: 1000px) {
 
@@ -202,5 +197,3 @@ h3{
   
   
 }
-=======
->>>>>>> 44dc0ce1a9eb841779cfa76a878cf8a60b552e02
