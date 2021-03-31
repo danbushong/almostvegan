@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700&display=swap");
 
+
+
 * {
   font-family: "Source Sans Pro", sans-serif;
   margin: 0;
@@ -175,9 +177,47 @@ h3{
   font-size: 1.3rem;
 }
 
+@media only screen and (min-width: 1000px) {
+  html {
+    font-size: 100%;
+    background-color: white;
+  }
+  .search-form {
+    width: 60rem;
+    height: 20rem;
+    
+  }
+  .search-form input[type="text"] {
+    position: absolute;
+    top: 30px;
+    padding: 0 0.5rem;
+    width: 60%;
+    color: #555;
+  }
+}
 
 
-@media only screen and (max-width: 1000px) {
+
+
+@media only screen and (max-width: 1000px){
+  html{
+    font-size: 80%;
+  }
+  .search-form {
+    width: 50rem;
+    height: 20rem;
+    
+  }
+  .search-form input[type="text"] {
+    position: absolute;
+    top: 30px;
+    padding: 0 0.5rem;
+    width: 60%;
+    color: #555;
+  }
+}
+
+@media only screen and (max-width: 650px) {
 
   html {
     font-size: 50%;
@@ -198,21 +238,4 @@ h3{
   
   
   
-}
-@media only screen and (min-width: 650px){
-  html{
-    font-size: 80%;
-  }
-  .search-form {
-    width: 50rem;
-    height: 20rem;
-    
-  }
-  .search-form input[type="text"] {
-    position: absolute;
-    top: 30px;
-    padding: 0 0.5rem;
-    width: 60%;
-    color: #555;
-  }
 }
