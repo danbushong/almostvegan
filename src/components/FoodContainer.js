@@ -100,7 +100,7 @@ function FoodContainer() {
   return (
     <div className="App">
       <h1>Food for DB and BB! </h1>
-      <h3>This app was created to help my wife and I figure out what foods we can eat. She is vegetarian, and I can not have dairy or eggs. I hope you find this app useful too!</h3>
+      <h3>This app was created to help my wife and I figure out what foods we can eat. She is vegetarian, and I cannot have dairy or eggs. I hope you find this app useful too!</h3>
       <form className="search-form">
       <input type="text" placeholder="Search" onChange={onChange} value={query} />
       
